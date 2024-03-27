@@ -1,8 +1,8 @@
 // Sample menu data (Consider fetching this data from a server in a real-world scenario)
 const menu = {
-    Starters: [{name: "Garlic Bread", price: ""}, {name: "Bruschetta", price: ""}],
-    MainCourses: [{name: "Margherita Pizza", price: ""}, {name: "Spaghetti Carbonara", price: ""}],
-    Desserts: [{name: "Tiramisu", price: ""}, {name: "Cheesecake", price: ""}]
+    Starters: ["Garlic Bread", "Bruschetta"],
+    MainCourses: ["Margherita Pizza", "Spaghetti Carbonara"],
+    Desserts: ["Tiramisu", "Cheesecake"]
 };
 
 // Function to display menu items by category
@@ -28,10 +28,10 @@ function displayMenuItems(menu) {
             const listItem = document.createElement("li");
 
             // Set the text content of the list item element to the item name
-            listItem.textContent = item.name;
+            listItem.textContent = item;
 
             // Attach a click event listener to the list item to add it to the order
-            listItem.addEventListener('click', () => addToOrder(item.name, item.price));
+            listItem.addEventListener('click', () => addToOrder(item));
             
             // Append the list item to the list of items
             listElement.appendChild(listItem);
@@ -40,25 +40,28 @@ function displayMenuItems(menu) {
         // Append the category list to the menu container
         menuContainer.appendChild(listElement);
     }
-
+            
 }
 
 // Callback function for adding an item to the order
-function addToOrder(itemName, itemPrice) {
+function addToOrder(itemName) {
     // Get the order items list and the order total element from the HTML
-    const menuContainer = document.getElementById('order');
-
-    console.log(itemName)
+    const [orderListContainer, orderTotal] = ['order-items', 'order-total'].map(id => document.getElementById(id));
 
     // Create a list item for the order
+    const orderItem = document.createElement('li');
 
     // Set the text content of the list item to the item name
+    orderItem.textContent = itemName;
 
     // Append the list item to the order items list
+    orderListContainer.appendChild(orderItem);
 
     // Calculate and update the total price
+    const total = orderListContainer.children.length * 60;
 
     // Update the text content of the order total element with the new total
+    orderTotal.textContent = total;
 }
 
 // Function to initialize the menu system
