@@ -1,63 +1,49 @@
-# [JSL06] Submission: CodeCuisine Menu Display System Challenge
+### INNRAN532_BCL2401_GroupB_InnocentRangaka_JSL06
 
-You will:
-1. Use the provided Starter Code Repository: https://github.com/CodeSpace-Academy/Module_6_StudentNo_Classcode_Group_Name-Surname_JSL06
-2. Code your solution.
-3. Commit changes to your GitHub repository.
-4. Submit the GitHub Repository Link to the LMS [JSL06] Submission Project Tab.
+# Restaurant Menu System
 
-In this coding challenge, you will build a simple menu display system for a fictional UberEats restaurant called "CodeCuisine." The goal is to display different categories of food items and allow users to add items to their order with a click. This challenge will help you apply various JavaScript concepts, including functions, closures, and event handling, to create an interactive menu.
+This project demonstrates a simple restaurant menu system implemented using JavaScript.
 
 ![alt text](JSL06-solution.gif)
 
-## Objectives:
+## Features:
 
-- Create and use functions to dynamically populate the menu items on the page.
-- Implement a callback function to handle adding items to the order.
-- Use closures to maintain the state of the order.
-- Utilize function expressions and anonymous functions.
-- Call built-in functions and create custom functions to manage the menu and order system.
+* Displays menu items categorized as Starters, Main Courses, and Desserts.
+* Allows adding items to an order by clicking on them.
+* Calculates and displays the total order price (assuming each item costs $60).
 
-## Instructions:
+## Functionality Overview:
 
-1. **Setup Project Files**: Begin by creating three files: `index.html`, `index.css`, and `index.js`. Link your CSS and JS files to your HTML document.
+### Menu Data:
 
-2. **HTML Structure**: Build the HTML structure for your application. Include placeholders for the menu items and the order summary. Consider using `<div>` elements with appropriate IDs or classes for styling and scripting.
+* The menu object defines the menu categories and their corresponding items.
+* In a real-world scenario, this data might be fetched from a server.
 
-3. **Styling**: Use CSS to style your menu and order summary. Make the user interface visually appealing, and ensure that it's responsive and easy to navigate.
+### displayMenuItems Function:
 
-4. **JavaScript Implementation**: Use the provided starter code in `index.js` as a foundation for your application. The starter code contains placeholders for key functions and comments to guide you through the implementation.
+* This function iterates through the menu object and creates HTML elements to represent:
+    * Category headings (<h3>) with the category name.
+    * Unordered lists (<ul>) to hold the items for each category.
+    * List items (<li>) for each menu item, displaying the item name.
+* It also attaches a click event listener to each list item, triggering the addToOrder function when clicked.
 
-    - `menu`: The `menu` object contains sample menu data, including categories and items. You can expand this menu with more items if needed.
+### addToOrder Function (Callback for Click Event):
 
-    - `displayMenuItems(menu)`: This function should dynamically create and display menu items grouped by category. Iterate over the `menu` object and create HTML elements for each category and item. Attach event listeners to the menu items to handle adding items to the order.
+* This function receives the clicked item name as an argument.
+* It creates a new list item (<li>) to represent the ordered item.
+* It appends the new list item to the order list container (<ul> with ID "order-items").
+* It calculates the total order price by multiplying the number of ordered items by $60 (assumed price per item).
+* It updates the order total displayed in the element with ID "order-total".
 
-    - `addToOrder(itemName)`: Implement this callback function to update the order summary when an item is added. You can use closures to maintain the state of the order. Calculate and update the total price accordingly.
+### initMenuSystem Function:
 
-    - `initMenuSystem(menu)`: Call the `displayMenuItems` function with the menu data and attach event listeners to menu items.
+* This function initializes the menu system by calling the displayMenuItems function to populate the menu.
 
-5. **Testing**: Thoroughly test your application to ensure that it correctly filters songs by genre for each Guardian and displays the playlists on the web page. Verify that you can add items to the order and that the order total updates as expected.
+### Further Enhancements:
 
-## What You Need to Do:
+Check my enhanced [project](/myproject/index.html) with the following features:
 
-To complete this challenge, follow these steps:
-
-1. Clone the provided Starter Code Repository to your local development environment: [Starter Code Repository](https://github.com/CodeSpace-Academy/Module_6_StudentNo_Classcode_Group_Name-Surname_JSL06).
-2. Open the cloned project in your code editor.
-3. Code your solution following the provided instructions and comments in the starter code.
-4. Commit your changes to your local Git repository with meaningful commit messages.
-5. Push your local Git repository to your GitHub account.
-6. Verify that the changes have been successfully pushed to your GitHub repository.
-
-## What You Need to Include:
-
-1. Ensure that your code includes the necessary modifications to meet the challenge requirements.
-2. Your GitHub repository should contain the updated code files.
-
-## How We'll Assess Your Work:
-
-1. We will review your GitHub repository to ensure that it contains the updated code files.
-2. We will assess the modifications made to the code to verify that they effectively meet the challenge requirements.
-3. We will consider the commit history and meaningful commit messages to evaluate your coding process.
-
-By following these steps and completing the challenge, you will demonstrate your ability to create interactive web applications using JavaScript. Good luck, and enjoy building the CodeCuisine Menu Display System!
+* Displays menu items categorized by Starters, Main Courses, and Desserts.
+* Allows adding menu items to an order list.
+* Calculates and updates the total price of the order.
+* Enables removing items from the order and updating the total accordingly.
