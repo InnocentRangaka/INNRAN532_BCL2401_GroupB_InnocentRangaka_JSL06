@@ -58,7 +58,42 @@ function addToOrder(itemName) {
     orderListContainer.appendChild(orderItem);
 
     // Calculate and update the total price
-    const total = orderListContainer.children.length * 60;
+
+    function IndexedDetails(params) {
+        return Object.entries(params).map(([key, value], index) => {
+            // Here, 'key' is the property name, 'value' is the property value, and 'index' is the current index
+            return {
+              name: key,
+              type: value,
+              position: index + 1 // Adjust for 1-based indexing (optional)
+            };
+        });
+    }
+
+    // Define a variable to store the calculated price
+    let price;
+    
+    // Call the IndexedDetails function (assuming it retrieves menu details)
+    // and iterate over the returned details using map
+    IndexedDetails(menu).map((info, i) => {
+        // Inside the first map, iterate over each item type within the current 'info' object
+        info.type.map(indexedName => {
+            // Check if the current item type matches the itemName
+            if(indexedName == itemName){
+                // Calculate a position-based value (presumably for pricing)
+                const makeNumber = (info.position >= 1)? (parseFloat(info.position) + 1) : info.position;
+                
+                // Calculate a base price based on the makeNumber
+                const makePrice = (info.position >= 1)? (9.99 * makeNumber) : 9.99;
+
+                // Calculate the final price considering quantity and type index
+                price = (parseFloat(makePrice) * makeNumber) + (parseFloat(makePrice) * info.type.indexOf(itemName))
+            }
+        });
+    });
+
+    // Calculate the total by adding the newly calculated price to the existing order total and format it to two decimal places
+    const total = (parseFloat(orderTotal.textContent) + price).toFixed(2);
 
     // Update the text content of the order total element with the new total
     orderTotal.textContent = total;
